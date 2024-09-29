@@ -1,6 +1,6 @@
 
 class Card:
-    vegetables = ["tomato","carrot","corn","eggplant"]
+    vegetables = ["t","b","c","e"]
     price = list(range(6))
 
     def __init__(self,vegs:str,pr:int):
