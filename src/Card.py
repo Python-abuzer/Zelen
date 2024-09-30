@@ -1,27 +1,27 @@
 
 class Card:
     vegetables = ["t","b","c","e"]
-    price = list(range(6))
+    quantity = list(range(1,4+1))
 
-    def __init__(self,vegs:str,pr:int):
+    def __init__(self,vegs:str,quant:int):
         if vegs not in Card.vegetables:
             raise ValueError
-        if pr not in Card.price:
+        if quant not in Card.quantity:
             raise ValueError
         self.vegs = vegs
-        self.pr = pr
+        self.quant = quant
 
     def __repr__(self):
-        return f'{self.vegs}{self.pr}'
+        return f'{self.vegs}{self.quant}'
     
     def __eq__(self, other):
         if isinstance(other, str):
             other = Card.load(other)
-        return self.vegs == other.vegs and self.pr == other.pr
+        return self.vegs == other.vegs and self.quant == other.quant
 
     def save(self):
         return repr(self)    
     
     @staticmethod
     def load(text: str):
-        return Card(vegs=text[0], pr=int(text[1]))
+        return Card(vegs=text[0], quant=int(text[1]))
