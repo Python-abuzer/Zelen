@@ -22,4 +22,6 @@ class Price:
     def save(self):
         return repr(self)
     
-    def add()
+    def add(price_str:str,card:str):
+        price = Price.load(price_str)
+        return f'{card}{price.save()}'
