@@ -1,6 +1,6 @@
-
+"Карты"
 class Card:
-    vegetables = ["t","b","c","e"]
+    vegetables = ["t","b","c","e"] #tomato,broccoli,corn,eggplant
     quantity = list(range(1,4))
 
     def __init__(self,vegs:str,quant:int):

@@ -1,5 +1,5 @@
 import pytest 
-from src.Card import Card
+from src.сard import Card
 
 def test_init():
     c = Card("c",4)
