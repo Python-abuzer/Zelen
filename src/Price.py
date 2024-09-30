@@ -22,4 +22,4 @@ class Price:
     def save(self):
         return repr(self)
     
-    
+    def add()
