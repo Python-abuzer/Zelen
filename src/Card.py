@@ -1,7 +1,7 @@
 
 class Card:
     vegetables = ["t","b","c","e"]
-    quantity = list(range(1,4+1))
+    quantity = list(range(1,4))
 
     def __init__(self,vegs:str,quant:int):
         if vegs not in Card.vegetables:
