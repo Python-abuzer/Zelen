@@ -4,7 +4,7 @@ from src.Card import Card
 def test_init():
     c = Card("c",4)
     assert c.vegs == "c"
-    assert c.pr == 4
+    assert c.quant == 4
 
 def test_save():
     c = Card('c', 4)
