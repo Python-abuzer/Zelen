@@ -22,6 +22,8 @@ class Price:
     def save(self):
         return repr(self)
     
+    @staticmethod
     def add(price_str:str,card:str):
+        """Присваивание цены к карте"""
         price = Price.load(price_str)
         return f'{card}{price.save()}'
