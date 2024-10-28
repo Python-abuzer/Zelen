@@ -26,7 +26,7 @@ class Price:
         return ''.join(list(f'{v}:{getattr(self, v)} ' for v in self.VEGETABLES))
     
     def __eq__(self, other):
-       return self.t == other.t and self.b == other.b and self.c == other.c and self.e == other.e and self.cr == other.cr
+       return self.t == other.t and self.b == other.b and self.co == other.co and self.e == other.e and self.cr == other.cr
 
     def add(self, other: str | dict | Self | Card):
         if isinstance(other, Price):
