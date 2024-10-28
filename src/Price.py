@@ -45,7 +45,6 @@ class Price:
                 print(f"Некорректный овощ: {v}") 
 
 
-
 def test_init():
     p = Price(t=3, b=1, co=2, e=0, cr=4)
     assert p.t == 3
