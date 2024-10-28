@@ -1,6 +1,6 @@
 "Цена"
 from src.сard import Card
-from typing import Self
+from typing import Self,Dict
 import pytest
 
 class Price:
