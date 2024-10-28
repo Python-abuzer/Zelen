@@ -22,7 +22,10 @@ class Price:
 
     def __repr__(self):
         return ''.join(f'{v}:{self.d[v]} ' for v in self.VEGETABLES)
-
+    
+    def save(self):
+        return repr(self)   
+    
     def __eq__(self, other):
         if isinstance(other, Price):
             return self.d == other.d
