@@ -8,7 +8,7 @@ class Price:
     MAX_PRICE = 5
 
     def __init__(self, **kwargs):
-        self.d = {v: kwargs.get(v, 0) for v in self.VEGETABLES}  #
+        self.d = {v: kwargs.get(v, 0) for v in self.VEGETABLES}  
         self.validate_vegetables(kwargs.keys())
         self.validate_values()
 
@@ -40,7 +40,6 @@ class Price:
             other = str(other)
         elif isinstance(other, str):
             other = other
-
         for v in other:
             if v in self.VEGETABLES:
                 self.d[v] = (self.d[v] + 1) % (Price.MAX_PRICE + 1)

@@ -1,3 +1,9 @@
 {
+    
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder}"
+    },
     "python.testing.pytestEnabled": true
+   
+    
 }
