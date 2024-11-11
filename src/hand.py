@@ -5,14 +5,16 @@ from src.price import Price
 
 class Hand:
     def __init__(self, cards: list[Card] = None):
-        self.cards = cards if cards is not None else []
+        if cards is not None:
+            self.cards = cards  
+        else: 
+            self.cards = []
 
-    def save(self) -> str:
-        scards = [c.save() for c in self.cards]
-        s = ' '.join(scards)
-        return s
     def __repr__(self):
         return self.save()
+    def save(self) -> str:
+        return ' '.join(card.save() for card in self.cards)
+    
 
     def add_card(self, card: Card):
         self.cards.append(card)

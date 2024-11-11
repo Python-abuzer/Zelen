@@ -17,7 +17,7 @@ class Card:
 
     def save(self):
         return repr(self)
-
+        
     @staticmethod
     def load(text: str):
         return Card(t=text.count('t'), b=text.count('b'), c=text.count('c'), e=text.count('e'), a=text.count('a'))
