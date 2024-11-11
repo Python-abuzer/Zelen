@@ -27,11 +27,11 @@ def test_eq():
     assert p1 != p3
 
 def test_add():
-    p1 = Price(t=1, b=1, c=2, e=0, a=4)
+    p1 = Price(t=1, b=2, c=2, e=0, a=4)
     p2 = Price(t=1, b=2, c=3, e=0, a=1)
     p1.add(p2)
     assert p1.d['t'] == 2
-    assert p1.d['b'] == 3
+    assert p1.d['b'] == 4
     assert p1.d['c'] == 5
     assert p1.d['e'] == 0
-    assert p1.d['a'] == 5 
+    assert p1.d['a'] == 5

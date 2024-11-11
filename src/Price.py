@@ -31,17 +31,16 @@ class Price:
             return self.d == other.d
         return False
 
-    def add(self, other: Dict[str, int] | str | Card):
+    def add(self, other: Dict[str, int] | str | Card | Self):
         if isinstance(other, Price):
             other = other.d
-        elif isinstance(other, dict):
-            other = other.keys()
-        elif isinstance(other, Card):
-            other = str(other)
-        elif isinstance(other, str):
-            other = other
-        for v in other:
-            if v in self.VEGETABLES:
-                self.d[v] = (self.d[v] + 1) % (Price.MAX_PRICE + 1)
-            else:
-                print(f"Некорректный овощ: {v}")
+        if isinstance(other, dict):
+            for v in other:
+                print(f"Add {v=} {self.d[v]=} {other[v]=}")
+                if v in self.VEGETABLES:
+                    self.d[v] = (self.d[v] + other[v]) % (Price.MAX_PRICE + 1)
+                else:
+                    print(f"Некорректный овощ: {v}")
+            return
+        
+        
