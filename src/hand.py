@@ -1,7 +1,6 @@
 "Рука"
-import typing
+from typing import List, Self, Dict
 from src.сard import Card
-from src.price import Price
 
 class Hand:
     def __init__(self, cards: list[Card] = None):
@@ -12,24 +11,32 @@ class Hand:
 
     def __repr__(self):
         return self.save()
+    
     def save(self) -> str:
         return ' '.join(card.save() for card in self.cards)
     
-
+    def __eq__(self, other: Self):
+        if isinstance(other, Hand):
+            return self.cards == other.cards
+        else:
+            return False
+    
+    @classmethod
+    def load(cls, data: str):
+        cards = [Card.load(card_str) for card_str in data.split()]
+        return cls(cards)
+    
     def add_card(self, card: Card):
         self.cards.append(card)
 
-    def remove_card(self, card: Card):
-        if card in self.cards:
-            self.cards.remove(card)
+    def __getattr__(self, name):
+        if name in Card.VEGETABLES:
+            return sum(getattr(card, name) for card in self.cards)
+        else:
+            raise AttributeError
 
-    def get_cards(self) -> list[Card]:
-        return self.cards
-
-    def score(self, price: Price) -> int:
-        total_score = 0
-        for card in self.cards:
-            total_score += card.score(price)
-        return total_score
+    def score(self, other):
+        return sum(getattr(self, v) * getattr(other, v) for v in Card.VEGETABLES)
+    
     
     
