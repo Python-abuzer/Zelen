@@ -1,5 +1,5 @@
 "Рука"
-from typing import List, Self, Dict
+from typing import Self
 from src.сard import Card
 
 class Hand:
