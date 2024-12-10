@@ -35,8 +35,8 @@ class Hand:
         else:
             raise AttributeError
 
-    def score(self, other):
-        return sum(getattr(self, v) * getattr(other, v) for v in Card.VEGETABLES)
+    def score(self, other:dict):
+        return sum(getattr(self, v) * other[v] for v in Card.VEGETABLES)
     
     
     

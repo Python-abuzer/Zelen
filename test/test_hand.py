@@ -28,7 +28,7 @@ def test_add_card():
 
     h.add_card(Card.load('eee'))
     assert h.save() != 'tbb tee aaa bee'
-    assert h.save() == 'tbb tee aaa eee'
+    assert h.save() == 'tbb tee aaa ttt eee'
 
 def test_score():
     h = Hand(cards=[Card.load('tbb')])
