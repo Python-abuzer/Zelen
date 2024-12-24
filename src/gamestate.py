@@ -10,20 +10,14 @@ class GameState:
     MIN_PLAYERS = 2
     MAX_PLAYERS = 6
 
-    def __init__(
-        self,
-        players: list[Player],
-        deck: Deck,
-        price: Price,
-        current_player: int = 0,
-        round_i: int = 1,
-    ):
+    def __init__(self,players: list[Player], deck: Deck, price: Price, cards: list[Card], current_player: int = 0,round_i: int = 1):
         if len(players) < self.MIN_PLAYERS or len(players) > self.MAX_PLAYERS:
             raise ValueError("Некорректное количество игроков")
         self.players: list[Player] = players
         self.deck: Deck = deck
         self._current_player: int = current_player
         self.price = price
+        self.cards: list[Card] = cards
         self.round_i: int = round_i
 
     def current_player(self) -> Player:
@@ -38,15 +32,17 @@ class GameState:
             and self._current_player == other._current_player
             and self.price == other.price
             and self.round_i == other.round_i
+            and self.cards == other.cards
         )
 
     def save(self) -> dict:
         return {
             "Price": self.price.save(),
             "Deck": self.deck.save(),
-            "currentPlayerIndex": self._current_player,
+            "CurrentPlayerIndex": self._current_player,
             "players": [p.save() for p in self.players],
             "Round": self.round_i,
+            "cards": [card.save() for card in self.cards],
         }
 
     @classmethod
@@ -56,7 +52,8 @@ class GameState:
             players=players,
             deck=Deck.load(data["Deck"]),
             price=Price.load(data["Price"]),
-            current_player=int(data["currentPlayerIndex"]),
+            cards = [Card.load(s) for s in data["cards"]],
+            current_player=int(data["CurrentPlayerIndex"]),
             round_i=int(data["Round"])   
         )
 
@@ -74,3 +71,5 @@ class GameState:
                 except IndexError:
                     print("В колоде кончились карты")
                     break
+
+   

@@ -35,3 +35,9 @@ def test_add():
     assert p1.d['c'] == 5
     assert p1.d['e'] == 0
     assert p1.d['a'] == 5
+
+def test_load():
+    c = 't:4 b:0 c:3 e:2 a:1 '
+    q = Price.load(c)
+    assert Price.load(c) == Price(t=4, b=0, c=3, e=2, a=1)
+    assert q.save() == c

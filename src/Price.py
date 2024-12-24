@@ -42,4 +42,8 @@ class Price:
                     print(f"Некорректный овощ: {v}")
             return
         
-        
+    @classmethod
+    def load(cls, data: str):
+        items = data.split()
+        params = {item.split(':')[0]: int(item.split(':')[1]) for item in items}
+        return cls(**params)
