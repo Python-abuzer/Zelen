@@ -2,8 +2,8 @@
     "Price": "t:2 b:1 c:4 e:0 a:0 ",
     "Deck": "ttb tbb ttt ttb tbb bbb",
     "Round": 1,
+    "cards": [],
     "CurrentPlayerIndex": 1,
-    "cards": ["eee", "cee", "cce"],
     "players": [
         {"name": "Player_1", "hand": "ttt bbb tbb", "score": 6, "kind": "Bot"},
         {"name": "Player_2", "hand": "ttb tbb ttb", "score": 10, "kind": "Bot"}

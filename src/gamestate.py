@@ -61,15 +61,15 @@ class GameState:
         n = len(self.players)
         self._current_player = (self._current_player + 1) % n
 
-    #Раздача карт
-    def distribution(self, num_cards_per_player: int = 1):  
-        for player in self.players:
-            for _ in range(num_cards_per_player):
-                try:
-                    card = self.deck.draw_card()
-                    player.hand.add_card(card)
-                except IndexError:
-                    print("В колоде кончились карты")
-                    break
+    def distribution(self, num_cards_per_player: int = 1): 
+        '''Кладет на стол столько карт,сколько игроков + 1'''
+        num_cards_per_player = len(self.players) + 1
+        for _ in range(num_cards_per_player):
+            try:
+                card = self.deck.draw_card()
+                self.cards.append(card)
+            except IndexError:
+                print("В колоде кончились карты")
+                break
 
    

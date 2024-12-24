@@ -104,13 +104,24 @@ class GameServer:
         return name, kind
 
     def run(self):
-     for round in range(6):
+        for round in range(2):
           # положить карты на стол
-
-          for player in self.game_state.players:
-                card = self.player_types[player].choose_card(self.game_state.cards, ...)
+            print(f'-----------{self.game_state.round_i}-ый раунд-----------')
+            print(f'Текущая цена: {self.game_state.price}')
+            self.game_state.distribution()
+            print(f"Карты на столе:{self.game_state.cards}")
+            for player in self.game_state.players:
+                '''cls, hand: Hand, cards: list[Card],price: Price, hand_counts: list[int] | None = None'''
+                card = self.player_types[player].choose_card(hand=player.hand, cards=self.game_state.cards, price=player)
+                print(f"{player.name},выбрал {card}")
                 # эту карту убрать со стола
-                self.game_state
+                self.game_state.cards.remove(card)
+                print(self.game_state.cards)
+        for player in self.game_state.players:
+            player.score = player.hand.score(self.game_state.price)
+            print(f'Итоговый счет  {player.name}: {player.score}')
+        self.game_state.round_i += 1
+
 def __main__():
     load_from_file = True
     if load_from_file:
