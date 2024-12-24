@@ -1,7 +1,7 @@
 "Рука"
 from typing import Self
 from src.сard import Card
-
+from src.price import Price
 class Hand:
     def __init__(self, cards: list[Card] = None):
         if cards is not None:
@@ -35,8 +35,14 @@ class Hand:
         else:
             raise AttributeError
 
-    def score(self, other:dict):
-        return sum(getattr(self, v) * other[v] for v in Card.VEGETABLES)
-    
-    
+    def score(self,  price: Price) -> int : #other
+        # return sum(getattr(self, v) * other[v] for v in Card.VEGETABLES)
+        score = 0
+        for card in self.cards:
+            for v in Card.VEGETABLES:
+                if v in card.save():
+                    score += getattr(price, v, 0)
+        return score
+
+        
     

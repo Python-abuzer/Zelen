@@ -47,3 +47,9 @@ class Price:
         items = data.split()
         params = {item.split(':')[0]: int(item.split(':')[1]) for item in items}
         return cls(**params)
+    
+    def update_price(self, card: Card):
+        card_value = card.save()
+        for v in Card.VEGETABLES:
+            count = card_value.count(v)
+            setattr(self, v, getattr(self, v, 0) + count)

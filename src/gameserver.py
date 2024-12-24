@@ -106,21 +106,30 @@ class GameServer:
     def run(self):
         for round in range(2):
           # положить карты на стол
-            print(f'-----------{self.game_state.round_i}-ый раунд-----------')
-            print(f'Текущая цена: {self.game_state.price}')
+            print(f'-----------{self.game_state.round_i}-й раунд-----------')
+            print(f'Цена: {self.game_state.price}')
             self.game_state.distribution()
             print(f"Карты на столе:{self.game_state.cards}")
             for player in self.game_state.players:
                 '''cls, hand: Hand, cards: list[Card],price: Price, hand_counts: list[int] | None = None'''
                 card = self.player_types[player].choose_card(hand=player.hand, cards=self.game_state.cards, price=player)
-                print(f"{player.name},выбрал {card}")
+                print(f"{player.name} выбрал {card}")
                 # эту карту убрать со стола
                 self.game_state.cards.remove(card)
                 print(self.game_state.cards)
+            for card in self.game_state.cards:
+                    self.game_state.price.update_price(card)
+                    print(f'Обновленная цена после раунда: {self.game_state.price}')
+            
+            self.game_state.round_i += 1
+            self.game_state.cards.clear()
         for player in self.game_state.players:
-            player.score = player.hand.score(self.game_state.price)
-            print(f'Итоговый счет  {player.name}: {player.score}')
-        self.game_state.round_i += 1
+           player.score = player.hand.score(self.game_state.price)
+           print(f'Итоговый счет игрока {player.name}: {player.score}')
+
+        winner = max(self.game_state.players, key=lambda player: player.score)
+        print(f'Победитель: {winner.name} со счетом {winner.score}')
+
 
 def __main__():
     load_from_file = True
